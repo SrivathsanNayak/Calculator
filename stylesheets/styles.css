@@ -1,3 +1,6 @@
+/*
+Added the grid-area names only for those elements which occupy multiple grid cells
+*/
 #display {
     grid-area: dp;
 }
