@@ -33,7 +33,9 @@ function operate(operator,a,b) {
     }
 }
 
+/*
 operate("+",2,3);
 operate("-",3,4);
 operate("*",9.5,7);
 operate("/",4,99);
+*/
