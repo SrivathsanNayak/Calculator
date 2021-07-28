@@ -39,4 +39,5 @@ Added the grid-area names only for those elements which occupy multiple grid cel
     border: 1px solid;
     color: aliceblue;
     font-size: 1.5rem;
+    cursor: pointer;
 }
