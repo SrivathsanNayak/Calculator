@@ -28,6 +28,11 @@ Added the grid-area names only for those elements which occupy multiple grid cel
 }
 
 .container div {
-    background: #aaa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #333;
     border: 1px solid;
+    color: aliceblue;
+    font-size: 1.5rem;
 }
