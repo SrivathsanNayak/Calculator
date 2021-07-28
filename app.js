@@ -1,13 +1,5 @@
-const divZero = document.querySelector("#zero");
-const divOne = document.querySelector("#one");
-const divTwo = document.querySelector("#two");
-const divThree = document.querySelector("#three");
-const divFour = document.querySelector("#four");
-const divFive = document.querySelector("#five");
-const divSix = document.querySelector("#six");
-const divSeven = document.querySelector("#seven");
-const divEight = document.querySelector("#eight");
-const divNine = document.querySelector("#nine");
+let divNumbers = document.querySelectorAll("#numbers");
+let divDisplay = document.querySelector("#display");
 
 function add(a,b) {
     return (a+b);
