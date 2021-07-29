@@ -1,8 +1,10 @@
 let divDisplay = document.querySelector("#display");
 
 document.querySelectorAll(".numbers").forEach(num => 
-    num.addEventListener("click", () => divDisplay.textContent += num.textContent )
-);
+    num.addEventListener("click", () => {
+        if (divDisplay.textContent.length < 12)
+            divDisplay.textContent += num.textContent;
+}));
 
 function add(a,b) {
     return (a+b);
