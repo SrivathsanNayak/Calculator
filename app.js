@@ -1,11 +1,8 @@
-const divNumbers = document.querySelectorAll(".numbers");
 let divDisplay = document.querySelector("#display");
 
-for (let i = 0; i < divNumbers.length; i++) {
-    divNumbers[i].addEventListener("click", function() {
-        divDisplay.textContent += divNumbers[i].textContent;
-    });
-}
+document.querySelectorAll(".numbers").forEach(num => 
+    num.addEventListener("click", () => divDisplay.textContent += num.textContent )
+);
 
 function add(a,b) {
     return (a+b);
