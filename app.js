@@ -1,15 +1,20 @@
 let divDisplay = document.querySelector("#display");
 let divClear = document.querySelector("#clear");
 let divDelete = document.querySelector("#delete");
+let displayValue;
 
 document.querySelectorAll(".numbers").forEach(num => 
     num.addEventListener("click", () => {
         if (divDisplay.textContent.length < 12)
             divDisplay.textContent += num.textContent;
+        displayValue = parseInt(divDisplay.textContent);
+        console.log(displayValue);
 }));
 
 divClear.addEventListener("click", () => {
     divDisplay.textContent = "";
+    displayValue = 0;
+    console.log(displayValue);
 });
 
 function add(a,b) {
