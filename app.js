@@ -1,10 +1,16 @@
 let divDisplay = document.querySelector("#display");
+let divClear = document.querySelector("#clear");
+let divDelete = document.querySelector("#delete");
 
 document.querySelectorAll(".numbers").forEach(num => 
     num.addEventListener("click", () => {
         if (divDisplay.textContent.length < 12)
             divDisplay.textContent += num.textContent;
 }));
+
+divClear.addEventListener("click", () => {
+    divDisplay.textContent = "";
+});
 
 function add(a,b) {
     return (a+b);
@@ -40,10 +46,3 @@ function operate(operator,a,b) {
             console.log("Invalid!");
     }
 }
-
-/*
-operate("+",2,3);
-operate("-",3,4);
-operate("*",9.5,7);
-operate("/",4,99);
-*/
