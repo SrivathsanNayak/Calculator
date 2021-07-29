@@ -1,5 +1,11 @@
-let divNumbers = document.querySelectorAll("#numbers");
+const divNumbers = document.querySelectorAll("#numbers");
 let divDisplay = document.querySelector("#display");
+
+for (let i = 0; i < divNumbers.length; i++) {
+    divNumbers[i].addEventListener("click", function() {
+        
+    });
+}
 
 function add(a,b) {
     return (a+b);
