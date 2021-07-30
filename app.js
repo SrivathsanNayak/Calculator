@@ -1,25 +1,28 @@
 let divDisplay = document.querySelector("#display");
 let divClear = document.querySelector("#clear");
 let divDelete = document.querySelector("#delete");
+const numbers = document.querySelectorAll(".numbers");
+const operators = document.querySelectorAll(".operators");
 let displayValue = 0;
+let firstValue = 0;
 
-document.querySelectorAll(".numbers").forEach(num => 
-    num.addEventListener("click", () => {
-        if (divDisplay.textContent.length < 12) {
-            if (divDisplay.textContent.match(/^(0)\1*/)) {
-                divDisplay.textContent = num.textContent;
-            }
-            else {
-                divDisplay.textContent += num.textContent;
-            }
+numbers.forEach(num => num.addEventListener("click", () => {
+    if (divDisplay.textContent.length < 12) {
+        if (divDisplay.textContent.match(/^(0)\1*/)) {
+            divDisplay.textContent = num.textContent;
         }
-        displayValue = parseInt(divDisplay.textContent);
-        //console.log(`${displayValue}: ${typeof(displayValue)}`);
+        else {
+            divDisplay.textContent += num.textContent;
+        }
+    }
+    displayValue = parseInt(divDisplay.textContent);
+    //console.log(`${displayValue}: ${typeof(displayValue)}`);
 }));
 
-document.querySelectorAll(".operators").forEach(operator => 
-    operator.addEventListener("click", () => {
-        console.log(displayValue);
+operators.forEach(operator => operator.addEventListener("click", () => {
+    divDisplay.textContent +=` ${operator.textContent} `;
+    firstValue = displayValue;
+    console.log(`${displayValue}, ${operator.textContent}, ${firstValue}`);
 }));
 
 divClear.addEventListener("click", () => {
