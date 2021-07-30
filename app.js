@@ -5,16 +5,22 @@ let displayValue;
 
 document.querySelectorAll(".numbers").forEach(num => 
     num.addEventListener("click", () => {
-        if (divDisplay.textContent.length < 12)
-            divDisplay.textContent += num.textContent;
+        if (divDisplay.textContent.length < 12) {
+            if (divDisplay.textContent.match(/^(0)\1*/)) {
+                divDisplay.textContent = num.textContent;
+            }
+            else {
+                divDisplay.textContent += num.textContent;
+            }
+        }
         displayValue = parseInt(divDisplay.textContent);
-        console.log(displayValue);
+        console.log(`${displayValue}: ${typeof(displayValue)}`);
 }));
 
 divClear.addEventListener("click", () => {
-    divDisplay.textContent = "";
+    divDisplay.textContent = "0";
     displayValue = 0;
-    console.log(displayValue);
+    console.log(`${displayValue}: ${typeof(displayValue)}`);
 });
 
 function add(a,b) {
