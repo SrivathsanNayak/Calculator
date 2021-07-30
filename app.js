@@ -20,6 +20,7 @@ operators.forEach(e => {
 });
 
 divClear.addEventListener("click", clearAll);
+divEqual.addEventListener("click", calculateResultValue);
 
 function displayNumber() {
     if (divDisplay.textContent.length < 12) {
@@ -30,9 +31,7 @@ function displayNumber() {
                 divDisplay.textContent += this.textContent;
             }
         } else {
-            if (divDisplay.textContent.match(/^(0)\1{1,}/)) {
-                divDisplay.textContent = this.textContent;
-            } else {
+            if (!(divDisplay.textContent.match(/^(0)\1{1,}/))) {
                 divDisplay.textContent += this.textContent;
                 isNumberAdded = true;
             }
@@ -56,6 +55,14 @@ function clearAll() {
     operatorUsed = "";
     isOperatorAdded = false;
     isNumberAdded = true;
+}
+
+function calculateResultValue() {
+    if (isOperatorAdded && isNumberAdded) {
+        let indexOfOperator = divDisplay.textContent.indexOf(divDisplay.textContent.match(/[-/+*]+/));
+        secondValue = parseInt(divDisplay.textContent.slice(indexOfOperator + 1));
+        console.log(`${firstValue}, ${secondValue}`);
+    }
 }
 
 function add(a, b) {
