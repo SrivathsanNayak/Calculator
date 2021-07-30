@@ -6,6 +6,7 @@ const numbers = document.querySelectorAll(".numbers");
 const operators = document.querySelectorAll(".operators");
 
 let firstValue = 0;
+let secondValue = 0;
 let operatorUsed = "";
 let isOperatorAdded = false;
 let isNumberAdded = true;
@@ -18,13 +19,7 @@ operators.forEach(e => {
     e.addEventListener('click', displayOperator);
 });
 
-divClear.addEventListener("click", () => {
-    divDisplay.textContent = "0";
-    firstValue = 0;
-    operatorUsed = "";
-    isOperatorAdded = false;
-    isNumberAdded = true;
-});
+divClear.addEventListener("click", clearAll);
 
 function displayNumber() {
     if (divDisplay.textContent.length < 12) {
@@ -53,6 +48,14 @@ function displayOperator() {
         isOperatorAdded = true;
         isNumberAdded = false;
     }
+}
+
+function clearAll() {
+    divDisplay.textContent = "0";
+    firstValue = 0;
+    operatorUsed = "";
+    isOperatorAdded = false;
+    isNumberAdded = true;
 }
 
 function add(a, b) {
