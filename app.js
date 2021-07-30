@@ -1,7 +1,7 @@
 let divDisplay = document.querySelector("#display");
 let divClear = document.querySelector("#clear");
 let divDelete = document.querySelector("#delete");
-let displayValue;
+let displayValue = 0;
 
 document.querySelectorAll(".numbers").forEach(num => 
     num.addEventListener("click", () => {
@@ -15,6 +15,11 @@ document.querySelectorAll(".numbers").forEach(num =>
         }
         displayValue = parseInt(divDisplay.textContent);
         //console.log(`${displayValue}: ${typeof(displayValue)}`);
+}));
+
+document.querySelectorAll(".operators").forEach(operator => 
+    operator.addEventListener("click", () => {
+        console.log(displayValue);
 }));
 
 divClear.addEventListener("click", () => {
