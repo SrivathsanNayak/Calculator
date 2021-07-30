@@ -14,13 +14,13 @@ document.querySelectorAll(".numbers").forEach(num =>
             }
         }
         displayValue = parseInt(divDisplay.textContent);
-        console.log(`${displayValue}: ${typeof(displayValue)}`);
+        //console.log(`${displayValue}: ${typeof(displayValue)}`);
 }));
 
 divClear.addEventListener("click", () => {
     divDisplay.textContent = "0";
     displayValue = 0;
-    console.log(`${displayValue}: ${typeof(displayValue)}`);
+    //console.log(`${displayValue}: ${typeof(displayValue)}`);
 });
 
 function add(a,b) {
