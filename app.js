@@ -10,6 +10,7 @@ let secondValue = 0;
 let operatorUsed = "";
 let isOperatorAdded = false;
 let isNumberAdded = true;
+let zeroFlag = false;
 
 numbers.forEach(e => {
     e.addEventListener('click', displayNumber);
@@ -31,10 +32,15 @@ function displayNumber() {
                 divDisplay.textContent += this.textContent;
             }
         } else {
-            if (!(divDisplay.textContent.match(/^(0)\1{1,}/))) {
-                divDisplay.textContent += this.textContent;
-                isNumberAdded = true;
+            if (divDisplay.textContent.match(/[-/+*]+[0]+/) && this.textContent == 0) {
+                zeroFlag = true;
+            } else if (divDisplay.textContent.match(/[-/+*]+[0]+/) && zeroFlag && this.textContent != 0) {
+                divDisplay.textContent = divDisplay.textContent.substring(0, divDisplay.textContent.length - 1) + this.textContent;
             }
+            else if (!(divDisplay.textContent.match(/^(0)\1{1,}/))) {
+                divDisplay.textContent += this.textContent;
+            }
+            isNumberAdded = true;
         }
     }
 }
