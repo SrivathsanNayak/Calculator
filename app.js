@@ -67,7 +67,8 @@ function calculateResultValue() {
     if (isOperatorAdded && isNumberAdded) {
         let indexOfOperator = divDisplay.textContent.indexOf(divDisplay.textContent.match(/[-/+*]+/));
         secondValue = parseInt(divDisplay.textContent.slice(indexOfOperator + 1));
-        console.log(`${firstValue}, ${secondValue}`);
+        console.log(`${firstValue}, ${secondValue}, ${operatorUsed}`);
+        operate(operatorUsed, firstValue, secondValue);
     }
 }
 
