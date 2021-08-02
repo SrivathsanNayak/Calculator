@@ -58,9 +58,11 @@ function displayOperator() {
 function clearAll() {
     divDisplay.textContent = "0";
     firstValue = 0;
+    secondValue = 0;
     operatorUsed = "";
     isOperatorAdded = false;
     isNumberAdded = true;
+    zeroFlag = false;
 }
 
 function calculateResultValue() {
