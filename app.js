@@ -75,7 +75,7 @@ function calculateResultValue() {
         let indexOfOperator = divDisplay.textContent.indexOf(divDisplay.textContent.match(/[-/+*]+/));
         secondValue = parseFloat(divDisplay.textContent.slice(indexOfOperator + 1));
         console.log(`${firstValue}, ${secondValue}, ${operatorUsed}`);
-        operate(operatorUsed, firstValue, secondValue);
+        console.log(operate(operatorUsed, firstValue, secondValue));
     }
 }
 
@@ -103,20 +103,29 @@ function divide(a, b) {
 }
 
 function operate(operator, a, b) {
+    let result;
     switch (operator) {
         case "+":
-            console.log(add(a, b));
+            result = add(a, b);
             break;
         case "-":
-            console.log(subtract(a, b));
+            result = subtract(a, b);
             break;
         case "*":
-            console.log(multiply(a, b));
+            result = multiply(a, b);
             break;
         case "/":
-            console.log(divide(a, b));
+            result = divide(a, b);
             break;
         default:
-            console.log("Invalid!");
+            result = "INVALID!";
     }
+    let resultParts = result.toString().split(".");
+    if (resultParts.length > 1) {
+        if (resultParts[1].length > 5) {
+            result = result.toFixed(4);
+        }
+    }
+    result = +result;
+    return result;
 }
