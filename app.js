@@ -72,11 +72,20 @@ function clearAll() {
 
 function calculateResultValue() {
     if (isOperatorAdded && isNumberAdded) {
+        let resultValue;
         let indexOfOperator = divDisplay.textContent.indexOf(divDisplay.textContent.match(/[-/+*]+/));
         secondValue = parseFloat(divDisplay.textContent.slice(indexOfOperator + 1));
-        console.log(`${firstValue}, ${secondValue}, ${operatorUsed}`);
-        console.log(operate(operatorUsed, firstValue, secondValue));
+        resultValue = operate(operatorUsed, firstValue, secondValue);
+        displayResultValue(resultValue);
     }
+}
+
+function displayResultValue(result) {
+    divDisplay.textContent = result;
+    isNumberAdded = true;
+    isOperatorAdded = false;
+    zeroFlag = false;
+    allowDecimal = (divDisplay.textContent.indexOf('.') > -1) ? false : true;
 }
 
 function addDecimal() {
