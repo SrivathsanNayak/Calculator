@@ -2,6 +2,7 @@ let divDisplay = document.querySelector("#display");
 let divClear = document.querySelector("#clear");
 let divDelete = document.querySelector("#delete");
 let divEqual = document.querySelector("#equal");
+let divDecimal = document.querySelector("#decimal");
 const numbers = document.querySelectorAll(".numbers");
 const operators = document.querySelectorAll(".operators");
 
@@ -11,6 +12,7 @@ let operatorUsed = "";
 let isOperatorAdded = false;
 let isNumberAdded = true;
 let zeroFlag = false;
+let allowDecimal = true;
 
 numbers.forEach(e => {
     e.addEventListener('click', displayNumber);
@@ -22,19 +24,20 @@ operators.forEach(e => {
 
 divClear.addEventListener("click", clearAll);
 divEqual.addEventListener("click", calculateResultValue);
+divDecimal.addEventListener("click", addDecimal);
 
 function displayNumber() {
     if (divDisplay.textContent.length < 12) {
         if (!isOperatorAdded) {
-            if (divDisplay.textContent.match(/^(0)\1*/)) {
+            if (divDisplay.textContent.match(/^(0)\1*/) && allowDecimal) {
                 divDisplay.textContent = this.textContent;
             } else {
                 divDisplay.textContent += this.textContent;
             }
         } else {
-            if (divDisplay.textContent.match(/[-/+*]+[0]+/) && this.textContent == 0) {
+            if (divDisplay.textContent.match(/[-/+*]+[0]+/) && this.textContent == 0 && allowDecimal) {
                 zeroFlag = true;
-            } else if (divDisplay.textContent.match(/[-/+*]+[0]+/) && zeroFlag && this.textContent != 0) {
+            } else if (divDisplay.textContent.match(/[-/+*]+[0]+/) && zeroFlag && this.textContent != 0 && allowDecimal) {
                 divDisplay.textContent = divDisplay.textContent.substring(0, divDisplay.textContent.length - 1) + this.textContent;
             }
             else if (!(divDisplay.textContent.match(/^(0)\1{1,}/))) {
@@ -47,11 +50,12 @@ function displayNumber() {
 
 function displayOperator() {
     if (!isOperatorAdded && isNumberAdded) {
-        firstValue = parseInt(divDisplay.textContent);
+        firstValue = parseFloat(divDisplay.textContent);
         operatorUsed = this.textContent;
         divDisplay.textContent += operatorUsed;
         isOperatorAdded = true;
         isNumberAdded = false;
+        allowDecimal = true;
     }
 }
 
@@ -63,14 +67,22 @@ function clearAll() {
     isOperatorAdded = false;
     isNumberAdded = true;
     zeroFlag = false;
+    allowDecimal = true;
 }
 
 function calculateResultValue() {
     if (isOperatorAdded && isNumberAdded) {
         let indexOfOperator = divDisplay.textContent.indexOf(divDisplay.textContent.match(/[-/+*]+/));
-        secondValue = parseInt(divDisplay.textContent.slice(indexOfOperator + 1));
+        secondValue = parseFloat(divDisplay.textContent.slice(indexOfOperator + 1));
         console.log(`${firstValue}, ${secondValue}, ${operatorUsed}`);
         operate(operatorUsed, firstValue, secondValue);
+    }
+}
+
+function addDecimal() {
+    if (allowDecimal) {
+        divDisplay.textContent += ".";
+        allowDecimal = false;
     }
 }
 
