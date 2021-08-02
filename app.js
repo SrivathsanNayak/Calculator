@@ -57,6 +57,15 @@ function displayOperator() {
         isNumberAdded = false;
         allowDecimal = true;
     }
+    if (isOperatorAdded & isNumberAdded) {
+        calculateResultValue();
+        firstValue = parseFloat(divDisplay.textContent);
+        operatorUsed = this.textContent;
+        divDisplay.textContent += operatorUsed;
+        isOperatorAdded = true;
+        isNumberAdded = false;
+        allowDecimal = true;
+    }
 }
 
 function clearAll() {
