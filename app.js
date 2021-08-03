@@ -12,6 +12,7 @@ let operatorUsed = "";
 let isOperatorAdded = false;
 let isNumberAdded = true;
 let zeroFlag = false;
+let allowNegativeSign = false;
 let allowDecimal = true;
 
 numbers.forEach(e => {
@@ -56,6 +57,16 @@ function displayOperator() {
         isOperatorAdded = true;
         isNumberAdded = false;
         allowDecimal = true;
+        if (this.textContent === "*" || this.textContent === "/") {
+            allowDecimal = false;
+            allowNegativeSign = true;
+        }
+    }
+    if (allowNegativeSign) {
+        document.querySelector("#subtract").addEventListener('click', () => {
+            divDisplay.textContent += "-";
+        });
+        allowDecimal = true;
     }
     if (isOperatorAdded & isNumberAdded) {
         calculateResultValue();
@@ -64,6 +75,7 @@ function displayOperator() {
         divDisplay.textContent += operatorUsed;
         isOperatorAdded = true;
         isNumberAdded = false;
+        allowNegativeSign = false;
         allowDecimal = true;
     }
 }
@@ -82,8 +94,9 @@ function clearAll() {
 function calculateResultValue() {
     if (isOperatorAdded && isNumberAdded) {
         let resultValue;
-        let indexOfOperator = divDisplay.textContent.indexOf(divDisplay.textContent.match(/[-/+*]+/));
+        let indexOfOperator = divDisplay.textContent.indexOf(divDisplay.textContent.match(/[-/+*]/));
         secondValue = parseFloat(divDisplay.textContent.slice(indexOfOperator + 1));
+        console.log(`First value: ${firstValue}, second value: ${secondValue}`);
         resultValue = operate(operatorUsed, firstValue, secondValue);
         displayResultValue(resultValue);
     }
@@ -125,15 +138,19 @@ function operate(operator, a, b) {
     switch (operator) {
         case "+":
             result = add(a, b);
+            console.log(`${result}`);
             break;
         case "-":
             result = subtract(a, b);
+            console.log(`${result}`);
             break;
         case "*":
             result = multiply(a, b);
+            console.log(`${result}`);
             break;
         case "/":
             result = divide(a, b);
+            console.log(`${result}`);
             break;
         default:
             result = "INVALID!";
