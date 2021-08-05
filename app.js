@@ -6,6 +6,7 @@ let divDecimal = document.querySelector("#decimal");
 const numbers = document.querySelectorAll(".numbers");
 const operators = document.querySelectorAll(".operators");
 
+/*
 let firstValue = 0;
 let secondValue = 0;
 let operatorUsed = "";
@@ -30,7 +31,7 @@ divDecimal.addEventListener("click", addDecimal);
 function displayNumber() {
     if (divDisplay.textContent.length < 12) {
         if (!isOperatorAdded) {
-            if (divDisplay.textContent.match(/^(0)\1*/) && allowDecimal) {
+            if (divDisplay.textContent.match(/^(0)\1+/) && allowDecimal) {
                 divDisplay.textContent = this.textContent;
             } else {
                 divDisplay.textContent += this.textContent;
@@ -163,4 +164,38 @@ function operate(operator, a, b) {
     }
     result = +result;
     return result;
+}
+*/
+
+let firstValue = 0;
+let secondValue = 0;
+let operatorUsed = "";
+let allowFlag = false;
+
+numbers.forEach(e => {
+    e.addEventListener('click', displayNumber);
+});
+
+/*operators.forEach(e => {
+    e.addEventListener('click', displayOperator);
+});
+
+divClear.addEventListener("click", clearAll);
+divEqual.addEventListener("click", calculateResultValue);
+divDecimal.addEventListener("click", addDecimal);
+*/
+
+function displayNumber() {
+    if (divDisplay.textContent.length < 12) {
+        if (this.textContent == 0 && divDisplay.textContent == 0) {
+            divDisplay.textContent = this.textContent;
+        } else {
+            if (!allowFlag) {
+                divDisplay.textContent = this.textContent;
+                allowFlag = true;
+            } else {
+                divDisplay.textContent += this.textContent;
+            }
+        }
+    }
 }
