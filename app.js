@@ -171,31 +171,92 @@ let firstValue = 0;
 let secondValue = 0;
 let operatorUsed = "";
 let allowFlag = false;
+let operatorAdded = false;
+let bothValuesAdded = false;
+let allowOperator = true;
+let allowDecimal = true;
 
 numbers.forEach(e => {
     e.addEventListener('click', displayNumber);
 });
 
-/*operators.forEach(e => {
+operators.forEach(e => {
     e.addEventListener('click', displayOperator);
 });
 
-divClear.addEventListener("click", clearAll);
-divEqual.addEventListener("click", calculateResultValue);
 divDecimal.addEventListener("click", addDecimal);
+
+divEqual.addEventListener("click", getValues);
+
+/*
+divClear.addEventListener("click", clearAll);
 */
 
 function displayNumber() {
-    if (divDisplay.textContent.length < 12) {
-        if (this.textContent == 0 && divDisplay.textContent == 0) {
+    if (divDisplay.textContent.length < 15) {
+        if (this.textContent == 0 && divDisplay.textContent === "0" && allowDecimal) {
             divDisplay.textContent = this.textContent;
         } else {
-            if (!allowFlag) {
+            if (!allowFlag && allowDecimal) {
                 divDisplay.textContent = this.textContent;
                 allowFlag = true;
             } else {
                 divDisplay.textContent += this.textContent;
+                if (operatorAdded || (operatorAdded && !allowOperator)) {
+                    bothValuesAdded = true;
+                }
             }
         }
     }
+}
+
+function displayOperator() {
+    if (allowOperator) {
+        if (operatorAdded && this.textContent == "-") {
+            divDisplay.textContent += this.textContent;
+            allowOperator = false;
+        } else if (!operatorAdded) {
+            firstValue = parseFloat(divDisplay.textContent);
+            divDisplay.textContent += this.textContent;
+            allowFlag = true;
+            allowDecimal = true;
+            operatorAdded = true;
+            operatorUsed = this.textContent;
+        }
+    }
+}
+
+function addDecimal() {
+    if (allowDecimal) {
+        divDisplay.textContent += this.textContent;
+        allowDecimal = false;
+    }
+}
+
+function getValues() {
+    if (bothValuesAdded) {
+        let indexOfOperator = divDisplay.textContent.indexOf(operatorUsed);
+        if (!allowOperator) {
+            secondValue = parseFloat(divDisplay.textContent.substring(indexOfOperator + 2))*-1;
+        } else {
+            secondValue = parseFloat(divDisplay.textContent.substring(indexOfOperator + 1));
+        }
+        console.log(`a: ${firstValue}, b: ${secondValue}, op: ${operatorUsed}`);
+    }
+}
+
+function add(a, b) {
+    return (a + b);
+}
+
+function subtract(a, b) {
+    return (a - b);
+}
+
+function multiply(a, b) {
+    return (a * b);
+}
+
+function divide(a, b) {
+    return ((b !== 0) ? (a / b) : "ERROR!");
 }
