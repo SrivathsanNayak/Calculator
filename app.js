@@ -31,6 +31,9 @@ divEqual.addEventListener("click", getValues);
 divClear.addEventListener("click", clearAll);
 
 function displayNumber() {
+    if (divDisplay.textContent == "NaN") {
+        clearAll();
+    }
     if (divDisplay.textContent.length < 15) {
         if (this.textContent == 0 && divDisplay.textContent === "0" && allowDecimal) {
             divDisplay.textContent = this.textContent;
@@ -135,12 +138,21 @@ function roundValue(result) {
 }
 
 function displayResultValue(result) {
-    divDisplay.textContent = result;
-    allowOperator = true;
-    operatorAdded = false;
-    allowDecimal = false;
-    allowFlag = true;
-    bothValuesAdded = false;
+    if (result != NaN) {
+        divDisplay.textContent = result;
+        allowOperator = true;
+        operatorAdded = false;
+        allowDecimal = false;
+        allowFlag = true;
+        bothValuesAdded = false;
+    } else {
+        divDisplay.textContent = result;
+        allowOperator = false;
+        operatorAdded = true;
+        allowDecimal = false;
+        allowFlag = false;
+        bothValuesAdded = false;
+    }
 }
 
 function clearAll() {
