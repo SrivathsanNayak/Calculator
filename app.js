@@ -79,13 +79,12 @@ function addDecimal() {
 
 function getValues() {
     if (bothValuesAdded) {
-        let indexOfOperator = divDisplay.textContent.indexOf(operatorUsed);
+        let indexOfOperator = divDisplay.textContent.indexOf(operatorUsed, firstValue.toString().length - 1);
         if (!allowOperator) {
             secondValue = parseFloat(divDisplay.textContent.substring(indexOfOperator + 2)) * -1;
         } else {
             secondValue = parseFloat(divDisplay.textContent.substring(indexOfOperator + 1));
         }
-        console.log(`a: ${firstValue}, b: ${secondValue}, op: ${operatorUsed}`);
         calculateValues(firstValue, secondValue, operatorUsed);
     }
 }
