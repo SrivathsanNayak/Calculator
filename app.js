@@ -7,27 +7,6 @@ const numbers = document.querySelectorAll(".numbers");
 const operators = document.querySelectorAll(".operators");
 
 /*
-let firstValue = 0;
-let secondValue = 0;
-let operatorUsed = "";
-let isOperatorAdded = false;
-let isNumberAdded = true;
-let zeroFlag = false;
-let allowNegativeSign = false;
-let allowDecimal = true;
-
-numbers.forEach(e => {
-    e.addEventListener('click', displayNumber);
-});
-
-operators.forEach(e => {
-    e.addEventListener('click', displayOperator);
-});
-
-divClear.addEventListener("click", clearAll);
-divEqual.addEventListener("click", calculateResultValue);
-divDecimal.addEventListener("click", addDecimal);
-
 function displayNumber() {
     if (divDisplay.textContent.length < 12) {
         if (!isOperatorAdded) {
@@ -81,17 +60,6 @@ function displayOperator() {
     }
 }
 
-function clearAll() {
-    divDisplay.textContent = "0";
-    firstValue = 0;
-    secondValue = 0;
-    operatorUsed = "";
-    isOperatorAdded = false;
-    isNumberAdded = true;
-    zeroFlag = false;
-    allowDecimal = true;
-}
-
 function calculateResultValue() {
     if (isOperatorAdded && isNumberAdded) {
         let resultValue;
@@ -110,65 +78,11 @@ function displayResultValue(result) {
     zeroFlag = false;
     allowDecimal = (divDisplay.textContent.indexOf('.') > -1) ? false : true;
 }
-
-function addDecimal() {
-    if (allowDecimal) {
-        divDisplay.textContent += ".";
-        allowDecimal = false;
-    }
-}
-
-function add(a, b) {
-    return (a + b);
-}
-
-function subtract(a, b) {
-    return (a - b);
-}
-
-function multiply(a, b) {
-    return (a * b);
-}
-
-function divide(a, b) {
-    return ((b !== 0) ? (a / b) : "ERROR!");
-}
-
-function operate(operator, a, b) {
-    let result;
-    switch (operator) {
-        case "+":
-            result = add(a, b);
-            console.log(`${result}`);
-            break;
-        case "-":
-            result = subtract(a, b);
-            console.log(`${result}`);
-            break;
-        case "*":
-            result = multiply(a, b);
-            console.log(`${result}`);
-            break;
-        case "/":
-            result = divide(a, b);
-            console.log(`${result}`);
-            break;
-        default:
-            result = "INVALID!";
-    }
-    let resultParts = result.toString().split(".");
-    if (resultParts.length > 1) {
-        if (resultParts[1].length > 5) {
-            result = result.toFixed(4);
-        }
-    }
-    result = +result;
-    return result;
-}
 */
 
 let firstValue = 0;
 let secondValue = 0;
+let resultValue = 0;
 let operatorUsed = "";
 let allowFlag = false;
 let operatorAdded = false;
@@ -188,9 +102,7 @@ divDecimal.addEventListener("click", addDecimal);
 
 divEqual.addEventListener("click", getValues);
 
-/*
 divClear.addEventListener("click", clearAll);
-*/
 
 function displayNumber() {
     if (divDisplay.textContent.length < 15) {
@@ -211,6 +123,9 @@ function displayNumber() {
 }
 
 function displayOperator() {
+    if (bothValuesAdded) {
+        getValues();
+    }
     if (allowOperator) {
         if (operatorAdded && this.textContent == "-") {
             divDisplay.textContent += this.textContent;
@@ -237,11 +152,12 @@ function getValues() {
     if (bothValuesAdded) {
         let indexOfOperator = divDisplay.textContent.indexOf(operatorUsed);
         if (!allowOperator) {
-            secondValue = parseFloat(divDisplay.textContent.substring(indexOfOperator + 2))*-1;
+            secondValue = parseFloat(divDisplay.textContent.substring(indexOfOperator + 2)) * -1;
         } else {
             secondValue = parseFloat(divDisplay.textContent.substring(indexOfOperator + 1));
         }
         console.log(`a: ${firstValue}, b: ${secondValue}, op: ${operatorUsed}`);
+        calculateValues(firstValue, secondValue, operatorUsed);
     }
 }
 
@@ -259,4 +175,57 @@ function multiply(a, b) {
 
 function divide(a, b) {
     return ((b !== 0) ? (a / b) : "ERROR!");
+}
+
+function calculateValues(first, second, op) {
+    let result;
+    switch (op) {
+        case "+":
+            result = add(first, second);
+            break;
+        case "-":
+            result = subtract(first, second);
+            break;
+        case "*":
+            result = multiply(first, second);
+            break;
+        case "/":
+            result = divide(first, second);
+            break;
+        default:
+            result = "INVALID";
+    }
+    resultValue = roundValue(result);
+    displayResultValue(resultValue);
+}
+
+function roundValue(result) {
+    let resultParts = result.toString().split(".");
+    if (resultParts.length > 1 && resultParts[1].length > 5) {
+        result = result.toFixed(4);
+    }
+    result = +result;
+    return result;
+}
+
+function displayResultValue(result) {
+    divDisplay.textContent = result;
+    allowOperator = true;
+    operatorAdded = false;
+    allowDecimal = false;
+    allowFlag = true;
+    bothValuesAdded = false;
+}
+
+function clearAll() {
+    divDisplay.textContent = "0";
+    firstValue = 0;
+    secondValue = 0;
+    resultValue = 0;
+    operatorUsed = "";
+    allowFlag = false;
+    operatorAdded = false;
+    bothValuesAdded = false;
+    allowOperator = true;
+    allowDecimal = true;
 }
