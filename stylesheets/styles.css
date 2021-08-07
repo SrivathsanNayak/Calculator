@@ -20,7 +20,7 @@ Added the grid-area names only for those elements which occupy multiple grid cel
         "7 8 9 m"
         "4 5 6 s"
         "1 2 3 a"
-        "z z dec eq";
+        "dec z z eq";
     position: absolute;
     top: 50%;
     left: 50%;
