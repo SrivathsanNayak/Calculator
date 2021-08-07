@@ -107,6 +107,10 @@ function divide(a, b) {
     return ((b !== 0) ? (a / b) : "ERROR!");
 }
 
+function power(a,b) {
+    return (Math.pow(a,b));
+}
+
 function calculateValues(first, second, op) {
     let result;
     switch (op) {
@@ -121,6 +125,9 @@ function calculateValues(first, second, op) {
             break;
         case "/":
             result = divide(first, second);
+            break;
+        case "^":
+            result = power(first, second);
             break;
         default:
             result = "INVALID";
@@ -171,14 +178,14 @@ function clearEntry() {
             allowOperator = true;
             operatorAdded = false;
         }
-    } else if (divDisplay.textContent.substring(divDisplay.textContent.length - 1).match(/[-*+/]/)) {
+    } else if (divDisplay.textContent.substring(divDisplay.textContent.length - 1).match(/[-*+/^]/)) {
         divDisplay.textContent = divDisplay.textContent.substring(0, divDisplay.textContent.length - 1);
         if (operatorAdded) {
             operatorAdded = false;
         }
     } else if (divDisplay.textContent.substring(divDisplay.textContent.length - 1).match(/\d/) && operatorAdded) {
         divDisplay.textContent = divDisplay.textContent.substring(0, divDisplay.textContent.length - 1);
-        if (divDisplay.textContent.substring(divDisplay.textContent.length - 1).match(/[-*+/]/) && operatorAdded) {
+        if (divDisplay.textContent.substring(divDisplay.textContent.length - 1).match(/[-*+/^]/) && operatorAdded) {
             bothValuesAdded = false;
         }
     }
