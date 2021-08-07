@@ -17,11 +17,11 @@ let allowOperator = true;
 let allowDecimal = true;
 
 numbers.forEach(e => {
-    e.addEventListener('click', displayNumber);
+    e.addEventListener("click", displayNumber);
 });
 
 operators.forEach(e => {
-    e.addEventListener('click', displayOperator);
+    e.addEventListener("click", displayOperator);
 });
 
 divDecimal.addEventListener("click", addDecimal);
@@ -29,6 +29,8 @@ divDecimal.addEventListener("click", addDecimal);
 divEqual.addEventListener("click", getValues);
 
 divClear.addEventListener("click", clearAll);
+
+divDelete.addEventListener("click", clearEntry);
 
 function displayNumber() {
     if (divDisplay.textContent == "NaN") {
@@ -151,6 +153,34 @@ function displayResultValue(result) {
         allowDecimal = false;
         allowFlag = false;
         bothValuesAdded = false;
+    }
+}
+
+function clearEntry() {
+    if ((divDisplay.textContent == "0" && divDisplay.textContent.length == 1) || (divDisplay.textContent != "0" && divDisplay.textContent.length == 1)) {
+        divDisplay.textContent = "0";
+        allowFlag = false;
+    } else if (divDisplay.textContent.substring(divDisplay.textContent.length - 1).match(/\d/) && !operatorAdded) {
+        divDisplay.textContent = divDisplay.textContent.substring(0, divDisplay.textContent.length - 1);
+    } else if (divDisplay.textContent.substring(divDisplay.textContent.length - 1).match(/[.]/)) {
+        divDisplay.textContent = divDisplay.textContent.substring(0, divDisplay.textContent.length - 1);
+        allowDecimal = true;
+    } else if (divDisplay.textContent.substring(divDisplay.textContent.length - 1).match(/[-]/) && !allowOperator) {
+        divDisplay.textContent = divDisplay.textContent.substring(0, divDisplay.textContent.length - 1);
+        if (operatorAdded && !allowOperator) {
+            allowOperator = true;
+            operatorAdded = false;
+        }
+    } else if (divDisplay.textContent.substring(divDisplay.textContent.length - 1).match(/[-*+/]/)) {
+        divDisplay.textContent = divDisplay.textContent.substring(0, divDisplay.textContent.length - 1);
+        if (operatorAdded) {
+            operatorAdded = false;
+        }
+    } else if (divDisplay.textContent.substring(divDisplay.textContent.length - 1).match(/\d/) && operatorAdded) {
+        divDisplay.textContent = divDisplay.textContent.substring(0, divDisplay.textContent.length - 1);
+        if (divDisplay.textContent.substring(divDisplay.textContent.length - 1).match(/[-*+/]/) && operatorAdded) {
+            bothValuesAdded = false;
+        }
     }
 }
 
