@@ -17,17 +17,15 @@ let allowOperator = true;
 let allowDecimal = true;
 
 numbers.forEach(e => {
-    e.addEventListener("click", displayNumber);
-});
-
-document.addEventListener("keydown", function (e) {
-    if (e.key === 1) {
-        displayNumber(1);
-    }
+    e.addEventListener("click", function(e) {
+        displayNumber(this.textContent);
+    });
 });
 
 operators.forEach(e => {
-    e.addEventListener("click", displayOperator);
+    e.addEventListener("click", function(e) {
+        displayOperator(this.textContent);
+    });
 });
 
 divDecimal.addEventListener("click", addDecimal);
@@ -38,13 +36,35 @@ divClear.addEventListener("click", clearAll);
 
 divDelete.addEventListener("click", clearEntry);
 
-function displayNumber(n) {
-    let value = (n === null)? n : this.textContent;
+document.addEventListener("keydown", function (e) {
+    let numbersArray = ['0','1','2','3','4','5','6','7','8','9'];
+    let operatorsArray = ['^','/','*','+','-'];
+    if (numbersArray.includes(e.key)) {
+        displayNumber(e.key);
+    }
+    if (operatorsArray.includes(e.key)) {
+        displayOperator(e.key);
+    }
+    if (e.key === '.') {
+        addDecimal();
+    }
+    if (e.key === 'a' || e.key === 'c') {
+        clearAll();
+    }
+    if (e.key === 'd' || e.key === 'Backspace' || e.key === 'Delete') {
+        clearEntry();
+    }
+    if (e.key === '=' || e.key === 'Enter') {
+        getValues();
+    }
+})
+
+function displayNumber(value) {
     if (divDisplay.textContent == "NaN") {
         clearAll();
     }
     if (divDisplay.textContent.length < 15) {
-        if ((value == 0) && divDisplay.textContent === "0" && allowDecimal) {
+        if (value == 0 && divDisplay.textContent === "0" && allowDecimal) {
             divDisplay.textContent = value;
         } else {
             if (!allowFlag && allowDecimal) {
@@ -60,8 +80,7 @@ function displayNumber(n) {
     }
 }
 
-function displayOperator(n) {
-    let value = (n === undefined)? n : this.textContent;
+function displayOperator(value) {
     if (bothValuesAdded) {
         getValues();
     }
@@ -80,10 +99,9 @@ function displayOperator(n) {
     }
 }
 
-function addDecimal(n) {
-    let value = (n === undefined)? n : this.textContent;
+function addDecimal() {
     if (allowDecimal) {
-        divDisplay.textContent += value;
+        divDisplay.textContent += ".";
         allowDecimal = false;
     }
 }
