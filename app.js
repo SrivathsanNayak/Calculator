@@ -169,6 +169,9 @@ function roundValue(result) {
         result = result.toFixed(4);
     }
     result = +result;
+    if (result.toString().length > 12) {
+        result = result.toExponential(5);
+    }
     return result;
 }
 
