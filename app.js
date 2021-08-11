@@ -233,3 +233,11 @@ function clearAll() {
     allowOperator = true;
     allowDecimal = true;
 }
+
+function helpOn() {
+    document.querySelector("#help-card").style.display = "block";
+}
+
+function helpOff() {
+    document.querySelector("#help-card").style.display = "none";
+}

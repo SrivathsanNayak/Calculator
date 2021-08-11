@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,9 +9,23 @@
 
     <link rel="stylesheet" href="stylesheets/reset.css">
     <link rel="stylesheet" href="stylesheets/styles.css">
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
+
 <body>
+    <span class="material-icons" onclick="helpOn()">
+        help
+    </span>
+    <div id="help-card" onclick="helpOff()">
+        <div id="help-card-text">
+            <p>Calculator is supported by keyboard input</p><br>
+            <p><em>If display shows NaN, please press <strong>AC</strong></em></p><br><br>
+            <p><em>Shortcuts:</em></p><br>
+            <p><strong>AC </strong>(a/c): to clear display</p><br>
+            <p><strong>CE </strong>(d/backspace/delete): to clear a single entry</p><br>
+            <p><strong>= </strong>(enter): to display result of operations</p>
+        </div>
+    </div>
     <div class="container">
         <div id="display">0</div>
         <div id="clear">AC</div>
@@ -36,4 +51,5 @@
 
     <script src="app.js"></script>
 </body>
+
 </html>
