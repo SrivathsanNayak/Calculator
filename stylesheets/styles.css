@@ -1,3 +1,20 @@
+:root {
+    /*White*/
+    --base-color-1: 150;
+    --color-1-normal: hsla(var(--base-color-1), 4%, 100%, 100%);
+    --color-1-darker: hsla(var(--base-color-1), 4%, 20%, 100%);
+    --color-1-green: hsla(var(--base-color-1), 57%, 46%, 100%);
+
+    /*Blue*/
+    --base-color-2: 200;
+    --color-2-normal: hsla(var(--base-color-2), 100%, 42%, 100%);
+    --color-2-darker: hsla(var(--base-color-2), 10%, 40%, 100%);
+
+    /*Orange*/
+    --base-color-3: 43;
+    --color-3-normal: hsla(var(--base-color-3), 100%, 50%, 100%);
+}
+
 /*
 Added the grid-area names only for those elements which occupy multiple grid cells
 */
@@ -11,8 +28,8 @@ Added the grid-area names only for those elements which occupy multiple grid cel
 
 .container {
     display: grid;
-    grid-gap: 0.5rem;
-    grid-template-columns: repeat(4, 4rem);
+    grid-gap: 0.25rem;
+    grid-template-columns: repeat(4, 5rem);
     grid-template-rows: repeat(6, 6rem);
     grid-template-areas: 
         "dp dp dp dp"
@@ -31,15 +48,31 @@ Added the grid-area names only for those elements which occupy multiple grid cel
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #333;
+    background-color: var(--color-2-darker);
     border: 1px solid;
-    color: aliceblue;
+    color: var(--color-1-normal);
     font-size: 1.5rem;
     cursor: pointer;
 }
 
 .container #display {
     cursor: auto;
+    background-color: var(--color-1-darker);
+    color: var(--color-1-normal);
+    border: none;
+    font-weight: bold;
+}
+
+.container #equal {
+    background-color: var(--color-1-green);
+}
+
+.container .operators {
+    background-color: var(--color-2-normal);
+}
+
+.container #clear, #delete {
+    background-color: var(--color-3-normal);
 }
 
 #help-card {
@@ -51,7 +84,7 @@ Added the grid-area names only for those elements which occupy multiple grid cel
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: rgba(0,0,0,0.92);
+    background-color: hsla(var(--base-color-1), 4%, 20%, 90%);
     z-index: 2;
     cursor: pointer;
 }
@@ -61,7 +94,7 @@ Added the grid-area names only for those elements which occupy multiple grid cel
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
+    color: var(--color-1-normal);
     text-align: center;
     font-size: 1.25rem;
     font-weight: 600;
@@ -69,4 +102,8 @@ Added the grid-area names only for those elements which occupy multiple grid cel
 
 #help-card-text p {
     padding: 1rem 0;
+}
+
+.material-icons {
+    cursor: pointer;
 }
