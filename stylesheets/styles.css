@@ -134,4 +134,9 @@ Added the grid-area names only for those elements which occupy multiple grid cel
     .material-icons {
         transform: scale(1.25);
     }
+
+    .container {
+        grid-template-columns: repeat(4, 4.5rem);
+        grid-template-rows: repeat(6, 5rem);
+    }
 }
