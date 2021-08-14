@@ -1,24 +1,20 @@
 :root {
-    /*White*/
-    --base-color-1: 150;
-    --color-1-normal: hsla(var(--base-color-1), 4%, 100%, 100%);
-    --color-1-darker: hsla(var(--base-color-1), 4%, 15%, 100%);
-    --color-1-transparent: hsla(var(--base-color-1), 4%, 20%, 90%);
-    --color-1-border: hsla(var(--base-color-1), 4%, 20%, 20%);
-    --color-1-green: hsla(var(--base-color-1), 57%, 46%, 100%);
-
-    /*Blue*/
-    --base-color-2: 200;
-    --color-2-normal: hsla(var(--base-color-2), 100%, 40%, 100%);
-    --color-2-darker: hsla(var(--base-color-2), 10%, 40%, 100%);
-
-    /*Orange*/
-    --base-color-3: 40;
-    --color-3-normal: hsla(var(--base-color-3), 100%, 45%, 100%);
+    --base-color-1: hsla(0, 0%, 92%, 100%);
+    --base-color-2: hsla(0, 0%, 15%, 100%);
+    --base-color-3: hsla(336, 84%, 80%, 100%);
+    --base-color-4: hsla(40, 90%, 61%, 100%);
+    --base-color-5: hsla(210, 63%, 43%, 100%);
+    --base-color-6: hsla(137, 26%, 51%, 100%);
+    --base-color-border: hsla(60, 1%, 4%, 20%);
+    --base-color-transparent: hsla(60, 1%, 4%, 80%);
 }
 
 * {
     user-select: none;
+}
+
+body {
+    background-color: var(--base-color-1);
 }
 
 /*
@@ -54,26 +50,26 @@ Added the grid-area names only for those elements which occupy multiple grid cel
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--color-2-darker);
-    border: 1px solid var(--color-1-border);
+    background-color: var(--base-color-3);
+    border: 1px solid var(--base-color-border);
     border-radius: 2px;
-    color: var(--color-1-normal);
+    color: var(--base-color-1);
     font-size: 1.5rem;
     cursor: pointer;
-    box-shadow: 0 0 1px var(--color-1-transparent);
+    box-shadow: 0 0 1px var(--base-color-transparent);
     opacity: 0.8;
-    transition: all 0.5s;
+    transition: opacity 0.5s;
 }
 
 .container div:hover {
     opacity: 1;
-    box-shadow: 0 0 3px var(--color-1-transparent);
+    box-shadow: 0 0 3px var(--base-color-transparent);
 }
 
 .container #display {
     cursor: auto;
-    background-color: var(--color-1-darker);
-    color: var(--color-1-normal);
+    background-color: var(--base-color-2);
+    color: var(--base-color-1);
     border: none;
     border-radius: 0;
     font-size: 1.6rem;
@@ -83,17 +79,17 @@ Added the grid-area names only for those elements which occupy multiple grid cel
 }
 
 .container #equal {
-    background-color: var(--color-1-green);
+    background-color: var(--base-color-6);
     font-size: 2.25rem;
 }
 
 .container .operators {
-    background-color: var(--color-2-normal);
+    background-color: var(--base-color-5);
     font-size: 1.75rem;
 }
 
 .container #clear, #delete {
-    background-color: var(--color-3-normal);
+    background-color: var(--base-color-4);
 }
 
 #help-card {
@@ -105,7 +101,7 @@ Added the grid-area names only for those elements which occupy multiple grid cel
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: var(--color-1-transparent);
+    background-color: var(--base-color-transparent);
     z-index: 2;
     cursor: pointer;
 }
@@ -115,14 +111,14 @@ Added the grid-area names only for those elements which occupy multiple grid cel
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: var(--color-1-normal);
+    color: hsla(0, 0%, 92%, 100%);
     text-align: center;
     font-size: 1.5rem;
     font-weight: 600;
 }
 
 .material-icons {
-    color: var(--color-3-normal);
+    color: var(--base-color-4);
     cursor: pointer;
     margin: 1.5rem;
     transform: scale(2);

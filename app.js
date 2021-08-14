@@ -273,13 +273,15 @@ function helpOff() {
 function changeMode() {
     if (modeToggle.textContent == "light_mode") {
         modeToggle.textContent = "dark_mode";
-        document.querySelector(":root").style.setProperty('--base-color-1','200');
-        document.querySelector(":root").style.setProperty('--base-color-2','40');
-        document.querySelector(":root").style.setProperty('--base-color-3','150');
+        document.querySelector(":root").style.setProperty('--base-color-2','hsla(0, 0%, 92%, 100%)');
+        document.querySelector(":root").style.setProperty('--base-color-1','hsla(0, 0%, 15%, 100%)');
+        document.querySelector(":root").style.setProperty('--base-color-5','hsla(40, 90%, 61%, 100%)');
+        document.querySelector(":root").style.setProperty('--base-color-4','hsla(210, 63%, 43%, 100%)');
     } else if (modeToggle.textContent == "dark_mode") {
         modeToggle.textContent = "light_mode";
-        document.querySelector(":root").style.setProperty('--base-color-1','150');
-        document.querySelector(":root").style.setProperty('--base-color-2','200');
-        document.querySelector(":root").style.setProperty('--base-color-3','40');
+        document.querySelector(":root").style.setProperty('--base-color-1','hsla(0, 0%, 92%, 100%)');
+        document.querySelector(":root").style.setProperty('--base-color-2','hsla(0, 0%, 15%, 100%)');
+        document.querySelector(":root").style.setProperty('--base-color-4','hsla(40, 90%, 61%, 100%)');
+        document.querySelector(":root").style.setProperty('--base-color-5','hsla(210, 63%, 43%, 100%)');
     }
 }
