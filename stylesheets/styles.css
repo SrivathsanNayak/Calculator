@@ -19,6 +19,7 @@
 
 * {
     background-color: var(--color-1-normal);
+    user-select: none;
 }
 
 /*
@@ -62,6 +63,7 @@ Added the grid-area names only for those elements which occupy multiple grid cel
     cursor: pointer;
     box-shadow: 0 0 1px var(--color-1-transparent);
     opacity: 0.8;
+    transition: all 0.5s;
 }
 
 .container div:hover {
@@ -129,6 +131,7 @@ Added the grid-area names only for those elements which occupy multiple grid cel
     margin: 2rem;
     transform: scale(2);
     opacity: 0.75;
+    transition: all 0.5s;
 }
 
 .material-icons:hover {
