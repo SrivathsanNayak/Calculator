@@ -5,6 +5,7 @@ let divEqual = document.querySelector("#equal");
 let divDecimal = document.querySelector("#decimal");
 const numbers = document.querySelectorAll(".numbers");
 const operators = document.querySelectorAll(".operators");
+const modeToggle = document.querySelector("#mode");
 
 let firstValue = 0;
 let secondValue = 0;
@@ -37,6 +38,8 @@ divEqual.addEventListener("click", getValues);
 divClear.addEventListener("click", clearAll);
 
 divDelete.addEventListener("click", clearEntry);
+
+modeToggle.addEventListener("click", changeMode);
 
 /*Section for keyboard shortcuts, respective functions triggered when these keys are pressed*/
 document.addEventListener("keydown", function (e) {
@@ -265,4 +268,18 @@ function helpOn() {
 /*To hide help card*/
 function helpOff() {
     document.querySelector("#help-card").style.display = "none";
+}
+
+function changeMode() {
+    if (modeToggle.textContent == "light_mode") {
+        modeToggle.textContent = "dark_mode";
+        document.querySelector(":root").style.setProperty('--base-color-1','200');
+        document.querySelector(":root").style.setProperty('--base-color-2','40');
+        document.querySelector(":root").style.setProperty('--base-color-3','150');
+    } else if (modeToggle.textContent == "dark_mode") {
+        modeToggle.textContent = "light_mode";
+        document.querySelector(":root").style.setProperty('--base-color-1','150');
+        document.querySelector(":root").style.setProperty('--base-color-2','200');
+        document.querySelector(":root").style.setProperty('--base-color-3','40');
+    }
 }

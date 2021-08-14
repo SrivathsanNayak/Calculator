@@ -13,12 +13,11 @@
     --color-2-darker: hsla(var(--base-color-2), 10%, 40%, 100%);
 
     /*Orange*/
-    --base-color-3: 43;
-    --color-3-normal: hsla(var(--base-color-3), 100%, 50%, 100%);
+    --base-color-3: 40;
+    --color-3-normal: hsla(var(--base-color-3), 100%, 45%, 100%);
 }
 
 * {
-    background-color: var(--color-1-normal);
     user-select: none;
 }
 
@@ -111,24 +110,21 @@ Added the grid-area names only for those elements which occupy multiple grid cel
     cursor: pointer;
 }
 
-#help-card-text {
+#help-card-text{
     position: absolute;
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: var(--color-1-normal);
     text-align: center;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 600;
 }
 
-#help-card-text p {
-    padding: 1rem 0;
-}
-
 .material-icons {
+    color: var(--color-3-normal);
     cursor: pointer;
-    margin: 2rem;
+    margin: 1.5rem;
     transform: scale(2);
     opacity: 0.75;
     transition: all 0.5s;
