@@ -2,7 +2,9 @@
     /*White*/
     --base-color-1: 150;
     --color-1-normal: hsla(var(--base-color-1), 4%, 100%, 100%);
-    --color-1-darker: hsla(var(--base-color-1), 4%, 20%, 100%);
+    --color-1-darker: hsla(var(--base-color-1), 4%, 15%, 100%);
+    --color-1-transparent: hsla(var(--base-color-1), 4%, 20%, 90%);
+    --color-1-border: hsla(var(--base-color-1), 4%, 20%, 20%);
     --color-1-green: hsla(var(--base-color-1), 57%, 46%, 100%);
 
     /*Blue*/
@@ -13,6 +15,10 @@
     /*Orange*/
     --base-color-3: 43;
     --color-3-normal: hsla(var(--base-color-3), 100%, 50%, 100%);
+}
+
+* {
+    background-color: var(--color-1-normal);
 }
 
 /*
@@ -49,10 +55,18 @@ Added the grid-area names only for those elements which occupy multiple grid cel
     align-items: center;
     justify-content: center;
     background-color: var(--color-2-darker);
-    border: 1px solid;
+    border: 1px solid var(--color-1-border);
+    border-radius: 2px;
     color: var(--color-1-normal);
     font-size: 1.5rem;
     cursor: pointer;
+    box-shadow: 0 0 1px var(--color-1-transparent);
+    opacity: 0.8;
+}
+
+.container div:hover {
+    opacity: 1;
+    box-shadow: 0 0 3px var(--color-1-transparent);
 }
 
 .container #display {
@@ -60,8 +74,11 @@ Added the grid-area names only for those elements which occupy multiple grid cel
     background-color: var(--color-1-darker);
     color: var(--color-1-normal);
     border: none;
+    border-radius: 0;
     font-size: 1.6rem;
     font-weight: bold;
+    opacity: 1;
+    box-shadow: none;
 }
 
 .container #equal {
@@ -87,7 +104,7 @@ Added the grid-area names only for those elements which occupy multiple grid cel
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: hsla(var(--base-color-1), 4%, 20%, 90%);
+    background-color: var(--color-1-transparent);
     z-index: 2;
     cursor: pointer;
 }
@@ -109,4 +126,17 @@ Added the grid-area names only for those elements which occupy multiple grid cel
 
 .material-icons {
     cursor: pointer;
+    margin: 2rem;
+    transform: scale(2);
+    opacity: 0.75;
+}
+
+.material-icons:hover {
+    opacity: 1;
+}
+
+@media screen and (max-width: 992px){
+    .material-icons {
+        transform: scale(1.25);
+    }
 }
